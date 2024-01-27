@@ -1,4 +1,4 @@
-package com.gorvi.gorviapp
+package com.gorvi.gorviapp.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +28,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.tooling.preview.Preview
+import com.gorvi.gorviapp.R
 import java.util.Locale
 
 class PictogramActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
