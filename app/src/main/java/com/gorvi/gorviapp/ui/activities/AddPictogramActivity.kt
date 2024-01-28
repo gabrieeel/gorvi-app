@@ -39,13 +39,10 @@ class AddPictogramActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContent {
             AddPictogramScreen()
         }
     }
-
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -64,12 +61,6 @@ class AddPictogramActivity : AppCompatActivity() {
                 // Update the fileName state with the internal file path
                 fileName = internalFilePath
             }
-        }
-
-        val cameraLauncher = rememberLauncherForActivityResult(
-            contract = ActivityResultContracts.TakePicturePreview()
-        ) { bitmap: Bitmap? ->
-            // TODO: Handle the captured image
         }
 
         Column(modifier = Modifier.padding(16.dp)) {
@@ -93,18 +84,13 @@ class AddPictogramActivity : AppCompatActivity() {
                 Text("Selected file: $fileName")
             }
 
-            // Button to capture an image using the camera
-            Button(onClick = {
-                cameraLauncher.launch(null)
-            }) {
-                Text(text = "Capture Image")
-            }
-
             Button(onClick = {
                 // Code to get image path and label
                 val imagePath = fileName ?: ""
                 val label = labelText
                 viewModel.insert(Pictogram(imagePath=imagePath, label=label))
+
+                finish()
             }) {
                 Text(text = "Save")
             }
