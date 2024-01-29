@@ -12,6 +12,10 @@ interface PictogramDao {
 
     @Query("SELECT * FROM pictogram")
     fun getAll(): Flow<List<Pictogram>>
+
+
+    @Query("SELECT * FROM pictogram WHERE id = :id")
+    fun getPictogramById(id: Int): Flow<Pictogram>
 }
 
 

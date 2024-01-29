@@ -11,6 +11,10 @@ class PictogramViewModel(private val repository: PictogramRepository) : ViewMode
 
     val allPictograms: Flow<List<Pictogram>> = repository.getAllPictograms()
 
+    fun getPictogramById(id: Int): Flow<Pictogram> {
+        return repository.getPictogramById(id)
+    }
+
     fun insert(pictogram: Pictogram) = viewModelScope.launch {
         repository.insert(pictogram)
     }

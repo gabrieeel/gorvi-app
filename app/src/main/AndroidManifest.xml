@@ -77,11 +77,17 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:name=".ui.activities.ShowPictogramActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".ui.activities.DisplayPictogramsActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light">
-
-            <!-- Meta-data for supporting API 25 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

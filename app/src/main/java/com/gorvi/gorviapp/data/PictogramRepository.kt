@@ -13,6 +13,10 @@ class PictogramRepository(private val pictogramDao: PictogramDao) {
     suspend fun insert(pictogram: Pictogram) {
         pictogramDao.insert(pictogram)
     }
+
+    fun getPictogramById(id: Int): Flow<Pictogram> {
+        return pictogramDao.getPictogramById(id)
+    }
 }
 
 
