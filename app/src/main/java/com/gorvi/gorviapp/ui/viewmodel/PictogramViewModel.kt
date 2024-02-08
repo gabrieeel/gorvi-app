@@ -19,6 +19,9 @@ class PictogramViewModel(private val repository: PictogramRepository) : ViewMode
         repository.insert(pictogram)
     }
 
-    // Additional ViewModel logic as needed
+    fun deletePictogram(pictogram: Pictogram) = viewModelScope.launch {
+        repository.deletePictogram(pictogram)
+    }
+
 }
 

@@ -17,6 +17,10 @@ class PictogramRepository(private val pictogramDao: PictogramDao) {
     fun getPictogramById(id: Int): Flow<Pictogram> {
         return pictogramDao.getPictogramById(id)
     }
+
+    suspend fun deletePictogram(pictogram: Pictogram) {
+        pictogramDao.delete(pictogram)
+    }
 }
 
 

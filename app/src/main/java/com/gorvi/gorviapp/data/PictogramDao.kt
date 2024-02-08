@@ -1,6 +1,7 @@
 package com.gorvi.gorviapp.data
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
@@ -16,6 +17,9 @@ interface PictogramDao {
 
     @Query("SELECT * FROM pictogram WHERE id = :id")
     fun getPictogramById(id: Int): Flow<Pictogram>
+
+    @Delete
+    suspend fun delete(pictogram: Pictogram)
 }
 
 
