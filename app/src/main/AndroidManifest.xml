@@ -82,7 +82,7 @@
         </activity>
         <activity
             android:name=".ui.activities.ShowPictogramActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ui.activities.ListPictogramsActivity"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

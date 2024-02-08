@@ -11,7 +11,7 @@ interface PictogramDao {
     @Insert
     suspend fun insert(pictogram: Pictogram)
 
-    @Query("SELECT * FROM pictogram")
+    @Query("SELECT * FROM pictogram ORDER BY label")
     fun getAll(): Flow<List<Pictogram>>
 
 
