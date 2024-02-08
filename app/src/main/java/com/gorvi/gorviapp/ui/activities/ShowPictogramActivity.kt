@@ -117,6 +117,15 @@ class ShowPictogramActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                         .size(20.dp, 20.dp)
                         .clickable(enabled = isSpeakerEnabled, onClick = onSpeakClick)
                 )
+
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_round_arrow_back_black_48),
+                    contentDescription = "Back",
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .clickable(onClick = { finish() } )
+                )
+
             }
         }
     }
