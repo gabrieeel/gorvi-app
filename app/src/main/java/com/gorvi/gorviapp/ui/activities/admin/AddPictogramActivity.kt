@@ -1,8 +1,7 @@
-package com.gorvi.gorviapp.ui.activities
+package com.gorvi.gorviapp.ui.activities.admin
 
 import android.content.Context
 import android.database.Cursor
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,7 +21,9 @@ import android.os.Bundle
 import android.provider.OpenableColumns
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.gorvi.gorviapp.GorviApp
 import com.gorvi.gorviapp.ui.viewmodel.PictogramViewModelFactory
 import com.gorvi.gorviapp.data.Pictogram
@@ -67,7 +68,9 @@ class AddPictogramActivity : AppCompatActivity() {
             // Text field for label input
             OutlinedTextField(
                 value = labelText,
-                onValueChange = { labelText = it },
+                onValueChange = { labelText = it.uppercase() },
+                keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters),
+
                 label = { Text("Enter Label") }
             )
             Spacer(modifier = Modifier.height(16.dp))

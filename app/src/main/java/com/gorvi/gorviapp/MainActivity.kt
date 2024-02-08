@@ -28,10 +28,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.gorvi.gorviapp.data.Pictogram
-import com.gorvi.gorviapp.ui.activities.AddPictogramActivity
-import com.gorvi.gorviapp.ui.activities.DisplayPictogramsActivity
-import com.gorvi.gorviapp.ui.activities.PictogramActivity
+import com.gorvi.gorviapp.ui.activities.admin.AddPictogramActivity
+import com.gorvi.gorviapp.ui.activities.admin.DisplayPictogramsActivity
 import com.gorvi.gorviapp.ui.activities.ShowPictogramActivity
+import com.gorvi.gorviapp.ui.activities.ListPictogramsActivity
 import com.gorvi.gorviapp.ui.viewmodel.PictogramViewModel
 import com.gorvi.gorviapp.ui.viewmodel.PictogramViewModelFactory
 
@@ -96,37 +96,36 @@ class MainActivity : ComponentActivity() {
             }
 
 
-            Button(onClick = {
-                // Action to perform when button is clicked
-                startActivity(Intent(this@MainActivity, NumbersScrambleActivity::class.java))
-            }) {
-                Text("(NO) NUMBERS SCRAMBLE")
-            }
+//            Button(onClick = {
+//                // Action to perform when button is clicked
+//                startActivity(Intent(this@MainActivity, NumbersScrambleActivity::class.java))
+//            }) {
+//                Text("(NO) NUMBERS SCRAMBLE")
+//            }
+
+//            Button(onClick = {
+//                // Action to perform when button is clicked
+//                intent = Intent(this@MainActivity, PictogramActivity::class.java).apply {
+//                    putExtra("IMAGE_RES_ID", R.drawable.auto)
+//                    putExtra("LABEL", "AUTO")
+//                }
+//                startActivity(intent)
+//            }) {
+//                Text("AUTO")
+//            }
+//
+//            Button(onClick = {
+//                // Action to perform when button is clicked
+//                intent = Intent(this@MainActivity, PictogramActivity::class.java).apply {
+//                    putExtra("IMAGE_RES_ID", R.drawable.avion)
+//                    putExtra("LABEL", "AVIÓN")
+//                }
+//                startActivity(intent)
+//            }) {
+//                Text("AVION")
+//            }
 
             Button(onClick = {
-                // Action to perform when button is clicked
-                intent = Intent(this@MainActivity, PictogramActivity::class.java).apply {
-                    putExtra("IMAGE_RES_ID", R.drawable.auto)
-                    putExtra("LABEL", "AUTO")
-                }
-                startActivity(intent)
-            }) {
-                Text("AUTO")
-            }
-
-            Button(onClick = {
-                // Action to perform when button is clicked
-                intent = Intent(this@MainActivity, PictogramActivity::class.java).apply {
-                    putExtra("IMAGE_RES_ID", R.drawable.avion)
-                    putExtra("LABEL", "AVIÓN")
-                }
-                startActivity(intent)
-            }) {
-                Text("AVION")
-            }
-
-            Button(onClick = {
-                // Action to perform when button is clicked
                 intent = Intent(this@MainActivity, AddPictogramActivity::class.java)
                 startActivityForResult(intent, REQUEST_CODE_ADD_PICTOGRAM)
             }) {
@@ -134,17 +133,21 @@ class MainActivity : ComponentActivity() {
             }
 
             Button(onClick = {
-
                 intent = Intent(this@MainActivity, DisplayPictogramsActivity::class.java)
                 startActivity(intent)
             }) {
                 Text("DISPLAY PICTOGRAMS")
             }
 
+            Button(onClick = {
+                startActivity(Intent(this@MainActivity, ListPictogramsActivity::class.java))
+            }) {
+                Text("PALABRAS")
+            }
 
-            WordGrid(wordsList)
+//            WordGrid(wordsList)
 
-            PictogramsScreen(viewModel)
+//            PictogramsScreen(viewModel)
 
             AppVersionScreen(getAppVersion())
         }
