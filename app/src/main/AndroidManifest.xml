@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".GorviApp"
@@ -18,14 +17,6 @@
         android:theme="@style/Theme.GorviApp"
         tools:targetApi="31">
         <activity
-            android:name=".LettersActivity"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light"
-            android:exported="false" />
-        <activity
-            android:name=".WordsActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
@@ -36,6 +27,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activities.ListPictogramsActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".LettersActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:exported="false" />
         <activity
             android:name=".NumbersActivity"
             android:parentActivityName=".MainActivity"
@@ -67,7 +71,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.AddPictogramActivity"
+            android:name=".ui.activities.admin.AddPictogramActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light">
 
@@ -85,7 +89,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".ui.activities.DisplayPictogramsActivity"
+            android:name=".ui.activities.admin.DisplayPictogramsActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
