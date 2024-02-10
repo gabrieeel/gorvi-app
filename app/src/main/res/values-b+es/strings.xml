@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Gorvi App</string>
+    <string name="select_image">Seleccionar imagen</string>
+    <string name="SAVE">GUARDAR</string>
+</resources>
