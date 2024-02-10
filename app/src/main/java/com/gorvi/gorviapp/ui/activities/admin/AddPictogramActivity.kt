@@ -1,5 +1,6 @@
 package com.gorvi.gorviapp.ui.activities.admin
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
@@ -12,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
@@ -21,10 +21,19 @@ import android.os.Bundle
 import android.provider.OpenableColumns
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import com.gorvi.gorviapp.GorviApp
+import com.gorvi.gorviapp.R
 import com.gorvi.gorviapp.ui.viewmodel.PictogramViewModelFactory
 import com.gorvi.gorviapp.data.Pictogram
 import com.gorvi.gorviapp.ui.viewmodel.PictogramViewModel
@@ -45,11 +54,14 @@ class AddPictogramActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("UnrememberedMutableState")
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun AddPictogramScreen() {
         var labelText by remember { mutableStateOf("") }
         var fileName by remember { mutableStateOf<String?>(null) }
+
+        val isSaveEnabled by derivedStateOf { labelText.isNotBlank() && fileName != null }
 
         val context = LocalContext.current
 
@@ -70,32 +82,35 @@ class AddPictogramActivity : AppCompatActivity() {
                 value = labelText,
                 onValueChange = { labelText = it.uppercase() },
                 keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters),
-
                 label = { Text("Enter Label") }
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             // Button to select an image from the gallery
             Button(onClick = {
                 imagePickerLauncher.launch("image/*")
             }) {
-                Text(text = "Select Image")
+                Text(text = context.getString(R.string.select_image))
             }
             Spacer(modifier = Modifier.height(8.dp))
 
             if (fileName != null) {
                 Text("Selected file: $fileName")
+                Spacer(modifier = Modifier.height(4.dp))
             }
 
-            Button(onClick = {
-                // Code to get image path and label
-                val imagePath = fileName ?: ""
-                val label = labelText
-                viewModel.insert(Pictogram(imagePath=imagePath, label=label))
-
-                finish()
-            }) {
-                Text(text = "Save")
+            Button(
+                onClick = {
+                    // Code to get image path and label
+                    val imagePath = fileName ?: ""
+                    val label = labelText
+                    viewModel.insert(Pictogram(imagePath=imagePath, label=label))
+                    finish()
+                },
+                enabled = isSaveEnabled,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = androidx.compose.ui.graphics.Color(71,214,43))) {
+                Text(text = getString(R.string.SAVE))
             }
         }
     }
